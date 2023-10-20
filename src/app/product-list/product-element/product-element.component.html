@@ -1,0 +1,47 @@
+<div class="d-flex-row align-items-center justify-content-center" *ngIf="getProducts().length > 0; else noProducts">
+   <ng-template [ngTemplateOutlet]="products" [ngTemplateOutletContext]="{products:getProducts()}" ></ng-template>
+   <ng-template [ngTemplateOutlet]="products2"></ng-template>
+</div>
+
+
+<ng-template #products let-products="products">
+    <h2>Best Sellers</h2>
+    <div *ngFor="let p of products" class=" mb-2 card w-75 ">
+        <div *ngIf="p.isActive"  class="row">
+            <div class="col-3">
+                <img src="/assets/image/{{p.imageUrl}}" alt="{{p.description}}" style="height: 150px;" class="img-fluid">
+            </div>
+            <div class="col-9">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.name}}</h5>
+                    <p class="cart-text">{{p.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #products2>
+    <h2>Most Liked</h2>
+    <div class="row">
+        <div class="d-flex ">
+            <div *ngFor="let p of getProducts()" class="card mr-2" style="width: 18rem;">
+                <div *ngIf="p.isActive"  class="row">
+                    <div >
+                        <img class="card-img-top" src="/assets/image/{{p.imageUrl}}" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noProducts>
+    <div class="alert alert-primary" *ngIf="getProducts().length === 0">
+        We couldn't find any produtcs
+    </div>
+</ng-template>
