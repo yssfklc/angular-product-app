@@ -1,40 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ProductRepository } from 'src/app/models/product.repository';
 
 @Component({
   selector: 'app-product-element',
   templateUrl: './product-element.component.html',
   styleUrls: ['./product-element.component.css']
 })
-export class ProductElementComponent {
- 
-  private products:any[] = [
-  {
-    id: 1,
-    name:'iphone 15',
-    price : 20000,
-    imageUrl: "1.jpg",
-    description : 'newest phone',
-    isActive:true
-  },
-  {
-    id: 2,
-    name:'iphone 16',
-    price : 30000,
-    imageUrl: "1.jpg",
-    description : 'newest phone',
-    isActive:true
-  },
-  {
-    id: 3,
-    name:'iphone 17',
-    price : 40000,
-    imageUrl: "1.jpg",
-    description : 'newest phone',
-    isActive:true
-  }
-]
+export class ProductElementComponent{
+  
+  newProducts:Product[];
+  productRepository:ProductRepository; 
+  selectProduct:Product|null=null;
 
-  getProducts () {
-    return this.products.filter(product=>product.isActive)
+  constructor(){
+    this.productRepository=new ProductRepository();
+    this.newProducts=this.productRepository.getProducts();
   }
+  selectedProduct(product:Product){
+    this.selectProduct=product;
+  }
+  unselectedProduct(){
+    this.selectProduct=null;
+  }
+  
 }
+
+let newInstance = new ProductElementComponent();
+console.log(newInstance.newProducts);
+console.log(newInstance.newProducts.length);
