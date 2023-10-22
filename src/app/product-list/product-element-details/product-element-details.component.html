@@ -1,0 +1,7 @@
+<div class="container" *ngIf="products else noProducts">
+    <h1>{{products.name}}</h1>
+    <p >{{products.description}}</p>
+
+</div>
+
+<ng-template #noProducts>noProducts</ng-template>

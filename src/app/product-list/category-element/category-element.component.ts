@@ -15,12 +15,10 @@ export class CategoryElementComponent {
     this.categoryRepository=new CategoryRepository();
     this.category=this.categoryRepository.getCategories();
   }
-  selectedCategory(category:category){
-    if(this.selectCategory){
-      this.selectCategory=null;
-    }else{
-      this.selectCategory=category;
-
-    }
+  selectedCategory(category:category | null){
+    
+    
+      return this.selectCategory=category;
+    
   }
 }

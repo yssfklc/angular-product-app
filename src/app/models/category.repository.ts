@@ -4,11 +4,15 @@ export class CategoryRepository{
     private category:category[] = [
         {
             id:1,
-            name:'men',
+            name:'Phones',
         },
         {
             id:2,
-            name:'women',
+            name:'Computers',
+        },
+        {
+            id:3,
+            name:'Tablets',
         }
     ]
     getCategories():category[]{

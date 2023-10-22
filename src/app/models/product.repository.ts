@@ -28,6 +28,42 @@ export class ProductRepository {
           description : 'newest phone',
           categoryId:2,
           isActive:true
+        },
+        {
+          id: 4,
+          name:'iphone 17',
+          price : 40000,
+          imageUrl: "1.jpg",
+          description : 'newest phone',
+          categoryId:2,
+          isActive:true
+        },
+        {
+          id: 5,
+          name:'iphone 17',
+          price : 40000,
+          imageUrl: "1.jpg",
+          description : 'newest phone',
+          categoryId:2,
+          isActive:true
+        },
+        {
+          id: 6,
+          name:'iphone 17',
+          price : 40000,
+          imageUrl: "1.jpg",
+          description : 'newest phone',
+          categoryId:2,
+          isActive:true
+        },
+        {
+          id: 7,
+          name:'iphone 17',
+          price : 40000,
+          imageUrl: "1.jpg",
+          description : 'newest phone',
+          categoryId:3,
+          isActive:true
         }
       ]
       
@@ -36,5 +72,8 @@ export class ProductRepository {
         }
         getProductsById(id:number):Product | undefined{
           return this.products.find(product=>product.id===id)
+        }
+        getProductsByCategoryId(id:number){
+          return this.products.filter(product=>product.categoryId===id)
         }
 }

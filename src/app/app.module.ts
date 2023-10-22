@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductElementComponent } from './product-list/product-element/product-element.component';
 import { CategoryElementComponent } from './product-list/category-element/category-element.component';
+import { HomeComponent } from './home/home.component';
+import { ProductElementDetailsComponent } from './product-list/product-element-details/product-element-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ProductListComponent,
-    ProductElementComponent,
-    CategoryElementComponent
+    CategoryElementComponent,
+    HomeComponent,
+    ProductElementDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
