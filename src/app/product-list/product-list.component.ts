@@ -23,10 +23,10 @@ export class ProductListComponent {
     })
     // this.newProducts=this.productRepository.getProducts();
     this.route.params.subscribe(params=>{
-      if(params["categoryId"]){
-        const categoryId = params["categoryId"];
-        this.newProducts = this.productRepository.getProductsByCategoryId(Number(categoryId));
-      }
+      this.productService.getProducts(params["categoryId"]).subscribe(data=>{
+        return this.newProducts = data
+      })
+      
     })
   }
   selectedProduct(product:Product){

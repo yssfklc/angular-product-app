@@ -22,10 +22,12 @@ export class ProductElementDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params=>{
       const id = params["productId"];
-      console.log(id);
-      console.log(typeof id);
-      // this.products = this.productRepository.getProductsById(Number(id));
-      this.ProductService.getProductsById(id).subscribe((data:any)=>console.log(data[0].id));
+      
+      
+      this.ProductService.getProductsById(id).subscribe((data:any)=>{
+        console.log(data)
+        this.products = {...data, id:id}
+      });
     })
   }
 }
