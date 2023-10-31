@@ -1,7 +1,5 @@
 
 <div class="container">
-    <!-- <button (click)="createProduct()" class="btn btn-secondary">Create Product</button> -->
-    <button (click)="getProduct()" class="btn btn-primary">Get Product</button>
     <div class="row">
         <div class="col-3">
             <app-category-element></app-category-element>
@@ -11,7 +9,7 @@
             <hr>
             <div class="d-flex-row align-items-center justify-content-center" *ngIf=" newProducts.length > 0; else noProducts">
                 <ng-template [ngTemplateOutlet]="products" [ngTemplateOutletContext]="{products:newProducts}" ></ng-template>
-                <ng-template [ngTemplateOutlet]="products2"></ng-template>
+                
             </div>
         </div>
        
@@ -30,25 +28,6 @@
                     <h5 class="card-title">{{p.name}}</h5>
                     <p class="cart-text">{{p.description}}</p>
                     <a routerLink="/products/{{p.id}}" class="btn btn-primary">Product Details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template>
-<ng-template #products2>
-    <h2>Most Liked</h2>
-    <div class="row">
-        <div class="d-flex justify-content-between">
-            <div *ngFor="let p of newProducts" class="card mr-2" style="width: 18rem;">
-                <div *ngIf="p.isActive"  class="row">
-                    <div >
-                        <img class="card-img-top" src="/assets/image/{{p.imageUrl}}" alt="Card image cap">
-                        <div class="card-body">
-                          <h5 class="card-title">{{p.name}}</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go Details</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

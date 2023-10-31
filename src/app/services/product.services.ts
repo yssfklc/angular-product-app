@@ -33,7 +33,7 @@ export class ProductService {
         console.log(id)
         return this.http.get<Product>(this.url + '/product/' + id + ".json")
     }
-    createProducts(product:Product): Observable<Product>{
+    createProducts(product:any): Observable<Product>{
        return this.http.post<Product>(this.url + '/product.json', product)
     }
 
