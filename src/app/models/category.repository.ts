@@ -1,7 +1,7 @@
-import { category } from "./category";
+import { Category } from "./category";
 
 export class CategoryRepository{
-    private category:category[] = [
+    private category:Category[] = [
         {
             id:1,
             name:'Phones',
@@ -15,7 +15,7 @@ export class CategoryRepository{
             name:'Tablets',
         }
     ]
-    getCategories():category[]{
+    getCategories():Category[]{
         return this.category
     }
 }

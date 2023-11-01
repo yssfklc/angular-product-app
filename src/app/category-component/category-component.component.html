@@ -1,0 +1,7 @@
+<form class="container">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input #name placeholder="Type category name" name="name" id="name" class="form-control"/>
+    </div>
+    <a (click)="saveCategory(name)" class="btn btn-primary mt-3">Create Category</a>
+</form>

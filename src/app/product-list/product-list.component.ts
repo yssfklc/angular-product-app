@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product';
 import { ActivatedRoute } from '@angular/router';
-import { ProductRepository } from '../models/product.repository';
 import {ProductService} from 'src/app/services/product.services';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../models/category';
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers:[ProductService]
+  providers:[ProductService, CategoryService]
 })
 export class ProductListComponent {
   newProducts:Product[]=[];
-  productRepository:ProductRepository; 
+  categories:Category[]=[];
   selectProduct:Product|null=null;
 
-  constructor(private route:ActivatedRoute, private productService:ProductService){
-    this.productRepository=new ProductRepository();
+  constructor(private route:ActivatedRoute, private productService:ProductService, private categoryService:CategoryService){
     this.productService.getProducts().subscribe((result)=>{
       for(const key in result) {
         this.newProducts.push({ ...result[key], id: key})
       }
     })
-    // this.newProducts=this.productRepository.getProducts();
     this.route.params.subscribe(params=>{
       this.productService.getProducts(params["categoryId"]).subscribe(data=>{
         return this.newProducts = data
       })
       
     })
+   
   }
   selectedProduct(product:Product){
     this.selectProduct=product;
