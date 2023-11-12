@@ -14,6 +14,9 @@ import { Category } from '../models/category';
 export class ProductCreateComponent {
   url:string='https://e-commerce-app-398415-default-rtdb.firebaseio.com'
   categories:Category[]=[];
+  model:any={
+    name:"Iphone 15"
+  }
   
   constructor(private productService: ProductService, private router: Router, private categoryService:CategoryService){
     
@@ -23,22 +26,23 @@ export class ProductCreateComponent {
       );
   }
 
-  save(name:any, price:any, imageUrl:any, description:any, checkbox:any,  category:any){
+  save(){
+    // name:any, price:any, imageUrl:any, description:any, checkbox:any,  category:any
+    // const productsToCreate={
+    //   id: 1,
+    //   name:name.value,
+    //   price: price.value,
+    //   imageUrl: imageUrl.value,
+    //   description: description.value,
+    //   categoryId:category.value,
+    //   isActive:checkbox.checked
+    // }
     
-    const productsToCreate={
-      id: 1,
-      name:name.value,
-      price: price.value,
-      imageUrl: imageUrl.value,
-      description: description.value,
-      categoryId:category.value,
-      isActive:checkbox.checked
-    }
+    // this.productService.createProducts(productsToCreate).subscribe(data=>{
+    //   this.router.navigate(['/products']);
+    // });
     
-    this.productService.createProducts(productsToCreate).subscribe(data=>{
-      this.router.navigate(['/products']);
-    });
-    
+    console.log(this.model);
   }
 
 }

@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductElementDetailsComponent } from './product-list/product-element-details/product-element-details.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { CategoryComponentComponent } from './category-component/category-component.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CategoryComponentComponent } from './category-component/category-compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

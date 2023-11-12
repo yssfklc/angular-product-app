@@ -1,28 +1,29 @@
-<form class="container">
+<form class="container" (ngSubmit)="save()">
+    {{model | json}}
     <div class="form-group">
         <label for="name">Name</label>
-        <input #name class="form-control" id="name" name="name"/>
+        <input [(ngModel)]="model.name" class="form-control" id="name" name="name"/>
     </div>
     <div class="form-group">
         <label for="price">Price</label>
-        <input #price class="form-control" id="price" name="price"/>
+        <input [(ngModel)]="model.price" class="form-control" id="price" name="price"/>
     </div>
     <div class="form-group">
         <label for="imageUrl">Image Url</label>
-        <input #imageUrl class="form-control" id="imageUrl" name="imageUrl"/>
+        <input [(ngModel)]="model.imageUrl" class="form-control" id="imageUrl" name="imageUrl"/>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input #description class="form-control" id="description" name="description"/>
+        <input [(ngModel)]="model.control" class="form-control" id="description" name="description"/>
     </div>
     <div class="form-check">
-        <input #checkbox type="checkbox" id="checkbox" class="form-check-input" name="isActive"/>
+        <input [(ngModel)]="model.checkbox" type="checkbox" id="checkbox" class="form-check-input" name="isActive"/>
         <label class="form-check-label" for="isActive"> Active </label>
     </div>
-    <select #category class="form-control" id="category" >
+    <select [(ngModel)]="model.category" class="form-control" id="category" >
         <option value="" disabled selected>Select your option</option>
         <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
 
     </select>
-    <a type="submit" (click)="save(name, price, imageUrl, description, checkbox,  category)" class="btn btn-primary">Create Product</a>
+    <a type="submit" class="btn btn-primary">Create Product</a>
 </form>
