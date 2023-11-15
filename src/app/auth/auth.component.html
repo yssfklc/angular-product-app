@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="alert alert-danger" role="alert" *ngIf="error.exist">
+        {{error.message}}
+    </div>
+    <form class="" #form="ngForm" (ngSubmit)="register(form)" >
+        <div class="form-group">
+            <label>E-mail</label>
+            <input required id="email" name="email" class="form-control" [(ngModel)]="authForm.email" type="email" placeholder="Type your email"/>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input required min="3" max="20" id="password" name="password" class="form-control" [(ngModel)]="authForm.password" placeholder="Type your password"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
