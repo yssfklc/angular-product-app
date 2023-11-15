@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.services';
 import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-create',
@@ -26,23 +27,29 @@ export class ProductCreateComponent {
       );
   }
 
-  save(){
-    // name:any, price:any, imageUrl:any, description:any, checkbox:any,  category:any
-    // const productsToCreate={
-    //   id: 1,
-    //   name:name.value,
-    //   price: price.value,
-    //   imageUrl: imageUrl.value,
-    //   description: description.value,
-    //   categoryId:category.value,
-    //   isActive:checkbox.checked
-    // }
+  save(form: NgForm){
     
-    // this.productService.createProducts(productsToCreate).subscribe(data=>{
-    //   this.router.navigate(['/products']);
-    // });
+    console.log(form.valid)
+   
+    const productsToCreate={
+      id: 1,
+      name:this.model.name,
+      price: this.model.price,
+      imageUrl: this.model.imageUrl,
+      description: this.model.description,
+      categoryId:this.model.category,
+      isActive:this.model.checkbox
+    }
     
-    console.log(this.model);
+    if(form.valid){
+      this.productService.createProducts(productsToCreate).subscribe(data=>{
+        this.router.navigate(['/products']);
+      });
+      
+    }else {
+      return
+    }
+    
   }
 
 }
