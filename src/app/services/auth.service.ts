@@ -12,9 +12,9 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-
-  url:string="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyACqAtmoOYOnIlaVtOcFFRQoIVzRidJuCs"
-  
+  key:string="AIzaSyACqAtmoOYOnIlaVtOcFFRQoIVzRidJuCs"
+  url:string="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + this.key
+  url2:string="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + this.key;
   constructor(private http:HttpClient) { 
 
   }
@@ -26,4 +26,15 @@ export class AuthService {
       returnSecureToken:true
     })
   }
+
+  login(email:string, password:string){
+
+    return this.http.post<AuthResponse>(this.url2, {
+      email:email,
+      password:password,
+      returnSecureToken:true
+    })
+
+  }
+
 }
