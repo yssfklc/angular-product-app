@@ -17,4 +17,8 @@ export class NavbarComponent {
       )
       
     }
+
+    logout(){
+      this.service.logout();
+    }
 }

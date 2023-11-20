@@ -56,6 +56,20 @@ export class AuthService {
 
   }
 
+  autoLogin(){
+    let user = JSON.parse(localStorage.getItem("user" ) || "{}")
+    let loadedUser = new User(user.email, user.id, user._token, new Date(user._tokenExpirationDate))
+
+    if(loadedUser.token){
+      this.user.next(loadedUser);
+    }
+  }
+
+  logout(){
+    this.user.next(null);
+    localStorage.removeItem("user")
+  }
+
   private handleError(err: HttpErrorResponse){
     let message="An error exists";
 
@@ -94,7 +108,8 @@ export class AuthService {
       expirationDate
     )
     console.log(user);
-    this.user.next(user)
+    this.user.next(user);
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
 }
