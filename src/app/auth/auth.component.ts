@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Observable } from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -12,8 +13,8 @@ export class AuthComponent {
   isLoginMode:boolean=false
   authForm:any={}
   error:any={};
-  constructor(private authService:AuthService){
-
+  constructor(private authService:AuthService, private router:Router){
+    
   }
   isLogin(){
     this.isLoginMode=!this.isLoginMode;
@@ -44,32 +45,12 @@ export class AuthComponent {
       authRequest.subscribe({
 
         next: (response:any)=>{
-          console.log(response)
+          this.router.navigate(['/'])
         },
 
         error: (err:any)=>{
-          console.log(err.error.error.errors[0].message);
           this.error.exist=true
-          switch(err.error.error.errors[0].message){
-            case "EMAIL_EXISTS":
-              this.error.message="This email already exist"
-              break;
-            case "INVALID_EMAIL":
-              this.error.message="Check your email and password"
-              break;
-            case "EMAIL_NOT_FOUND":
-              this.error.message="There is no user record corresponding to this identifier."
-              break;
-            case"INVALID_PASSWORD":
-            case "INVALID_LOGIN_CREDENTIALS":
-              this.error.message="The password is invalid or the user does not have a password."
-              break;
-            case "USER_DISABLED":
-              this.error.message="The user account has been disabled by an administrator."
-              break;
-            default:
-              this.error.message=err.error.error.errors[0].message
-          }
+          this.error.message=err
         }
       })
     }

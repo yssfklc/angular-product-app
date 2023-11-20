@@ -1,13 +1,14 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "../models/product";
-import { Observable, map } from "rxjs";
+import { Observable, exhaustMap, map, take, tap } from "rxjs";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class ProductService {
-    url:string='https://e-commerce-app-398415-default-rtdb.firebaseio.com'
+    url:string='https://storied-fuze-404205-default-rtdb.firebaseio.com'
 
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient, private authService:AuthService){
 
     }
 
@@ -34,7 +35,13 @@ export class ProductService {
         return this.http.get<Product>(this.url + '/product/' + id + ".json")
     }
     createProducts(product:any): Observable<Product>{
-       return this.http.post<Product>(this.url + '/product.json', product)
+        return this.authService.user.pipe(
+            take(1),
+            tap(user=>console.log(user)),
+            exhaustMap(user=>{
+                return this.http.post<Product>(this.url + '/product.json?auth=' + user?.token, product)
+            })
+        )
     }
 
 }

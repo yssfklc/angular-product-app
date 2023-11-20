@@ -6,7 +6,7 @@ import { Category } from '../models/category';
 
 @Injectable()
 export class CategoryService {
-  url:string='https://e-commerce-app-398415-default-rtdb.firebaseio.com';
+  url:string='https://storied-fuze-404205-default-rtdb.firebaseio.com/';
 
 
   constructor(private http: HttpClient) { 

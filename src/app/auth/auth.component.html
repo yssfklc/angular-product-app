@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input required min="3" max="20" id="password" name="password" class="form-control" [(ngModel)]="authForm.password" placeholder="Type your password"/>
+            <input required min="3" max="20" id="password" name="password" type="password" class="form-control" [(ngModel)]="authForm.password" placeholder="Type your password"/>
         </div>
         <div class="d-flex flex-column">
             <button type="submit" class="btn btn-primary my-2">{{isLoginMode?"Sign In" : "Sign Up"}}</button>
